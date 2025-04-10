@@ -49,7 +49,7 @@ function MapScreen() {
             {/* Search Input */}
             <TouchableOpacity
               style={{ flex: 1 }}
-              onPress={() => navigation.navigate("search")}
+              onPress={() => navigation.navigate("Search")}
             >
               <TextInput
                 placeholder="Search here"

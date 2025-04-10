@@ -62,7 +62,7 @@ export default function Index() {
     return (
       <View style={styles.splashContainer}>
         <Image
-          source={require("../assets/images/logo.png")} // Replace with your logo
+          source={require("../../assets/images/logo.png")} // Replace with your logo
           style={styles.splashLogo}
         />
         <Text style={styles.splashText}>ParkEase</Text>
@@ -76,7 +76,7 @@ export default function Index() {
       {/* Search bar with filter button */}
       <TouchableOpacity
         style={styles.searchContainer}
-        onPress={() => navigation.navigate("search")} // Navigate to search screen
+        onPress={() => navigation.navigate('search')} // Navigate to search screen
       >
         <Ionicons name="search" size={20} color="gray" style={styles.icon} />
         <Text style={styles.searchInput}>Search parking...</Text>
@@ -84,7 +84,7 @@ export default function Index() {
         {/* Filter button with custom logo */}
         <TouchableOpacity style={styles.filterButton}>
           <Image
-            source={require("../assets/images/filter.png")} // Your custom filter icon
+            source={require("../../assets/images/filter.png")} // Your custom filter icon
             style={styles.filterIcon}
           />
         </TouchableOpacity>
@@ -97,7 +97,7 @@ export default function Index() {
           style={styles.map}
           region={region}
           showsUserLocation={true}
-          onPress={() => navigation.navigate("map")} // Navigate to map.tsx page
+          onPress={() => navigation.navigate('map')} // Navigate to map.tsx page
         >
           <Marker coordinate={region} />
         </MapView>
