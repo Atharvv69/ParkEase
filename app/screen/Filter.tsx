@@ -7,6 +7,7 @@ import {
   Modal,
   Text,
   Image,
+  Linking,
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
@@ -60,6 +61,7 @@ const FullScreenMap = ({ navigation }: { navigation: FullScreenMapNavigationProp
   const [govSelected, setGovSelected] = useState(false);
   const [privateSelected, setPrivateSelected] = useState(false);
   const [priceRange, setPriceRange] = useState(1000);
+  const [searchText, setSearchText] = useState("");
 
   return (
     <View style={styles.container}>
@@ -74,19 +76,26 @@ const FullScreenMap = ({ navigation }: { navigation: FullScreenMapNavigationProp
         />
       </TouchableOpacity>
 
-      {/* 🔹 Search Bar */}
-      <TouchableOpacity
-        style={styles.searchContainer}
-        onPress={() => navigation.navigate("Search")}
-      >
+      {/* 🔹 Search Bar (Updated) */}
+      <View style={styles.searchContainer}>
         <Ionicons name="search" size={25} color="black" />
         <TextInput
           style={styles.searchInput}
           placeholder="Search..."
           placeholderTextColor="#888"
-          editable={false}
+          value={searchText}
+          onChangeText={setSearchText}
+          returnKeyType="search"
+          onSubmitEditing={() => {
+            if (searchText.trim()) {
+              const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                searchText
+              )}`;
+              Linking.openURL(url);
+            }
+          }}
         />
-      </TouchableOpacity>
+      </View>
 
       {/* 🔹 Filter Button */}
       <TouchableOpacity
@@ -236,9 +245,8 @@ export default function App() {
   );
 }
 
-// 🔹 Styles (unchanged — as you had it)
+// 🔹 Styles
 const styles = StyleSheet.create({
-  // ... [your full styles here, unchanged]
   container: { flex: 1 },
   backButton: {
     position: "absolute",
